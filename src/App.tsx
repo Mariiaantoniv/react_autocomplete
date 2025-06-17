@@ -17,9 +17,7 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
   const [searchText, setSearchText] = useState('');
   const [appliedQuery, setAppliedQuery] = useState('');
 
-  const applyQuery = useCallback(
-    debounce(setAppliedQuery, delay), [delay]
-  );
+  const applyQuery = useCallback(debounce(setAppliedQuery, delay), [delay]);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
@@ -28,11 +26,11 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
   };
 
   const filteredPeople = useMemo(() => {
-    const applayQ = appliedQuery.toLowerCase();
+    const applyQ = appliedQuery.toLowerCase();
     const peopl = peopleFromServer;
 
     return appliedQuery.trim()
-      ? peopl.filter(person => person.name.toLowerCase().includes(applayQ))
+      ? peopl.filter(person => person.name.toLowerCase().includes(applyQ))
       : peopleFromServer;
   }, [appliedQuery]);
 
