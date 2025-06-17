@@ -17,11 +17,13 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({
   const [searchText, setSearchText] = useState('');
   const [appliedQuery, setAppliedQuery] = useState('');
 
-  const applayQuery = useCallback(debounce(setAppliedQuery, delay), [delay]);
+  const applyQuery = useCallback(
+    debounce(setAppliedQuery, delay), [delay]
+  );
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
-    applayQuery(event.target.value);
+    applyQuery(event.target.value);
     onSelect(null);
   };
 
